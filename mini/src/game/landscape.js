@@ -51,8 +51,8 @@ export function drawLandscape(g, distance = 0) {
 }
 export function createItems(scene) {
   const g = scene.make.graphics({ add: false });
-  g.fillStyle(0xffd565); g.fillPoints([{x:12,y:0},{x:16,y:8},{x:24,y:9},{x:18,y:15},{x:20,y:24},{x:12,y:19},{x:4,y:24},{x:6,y:15},{x:0,y:9},{x:8,y:8}], true);
-  g.fillStyle(0xfff1b0); g.fillRect(10,7,3,9); g.fillRect(7,10,9,3); g.generateTexture('star',24,24);
+  g.fillStyle(0xffe477); g.fillPoints([{x:12,y:0},{x:16,y:8},{x:24,y:9},{x:18,y:15},{x:20,y:24},{x:12,y:19},{x:4,y:24},{x:6,y:15},{x:0,y:9},{x:8,y:8}], true);
+  g.fillStyle(0xffffff); g.fillRect(10,7,3,9); g.fillRect(7,10,9,3); g.generateTexture('star',24,24);
   g.clear();g.fillStyle(0x46314f);g.fillRect(1,14,34,21);g.fillRect(7,4,23,27);g.fillRect(14,0,12,8);
   g.fillStyle(0xa0749c);g.fillRect(8,5,6,19);g.fillRect(14,3,10,5);
   g.fillStyle(0xff68ba);g.fillRect(22,12,2,8);g.fillRect(22,19,7,2);g.generateTexture('rock',36,36);g.destroy();

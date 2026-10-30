@@ -15,7 +15,7 @@ class Adventure extends Phaser.Scene {
     createArt(this); createItems(this);
     this.land = this.add.graphics(); drawLandscape(this.land);
     this.shadow = this.add.ellipse(184, 289, 69, 6, 0x090713, .5);
-    this.cat = this.add.image(185, WORLD.groundY, 'michi-0').setOrigin(.5,1).setScale(.84);
+    this.cat = this.add.image(185, WORLD.groundY, 'michi-0').setOrigin(.5,1).setScale(.98);
     this.running = false; this.paused = false; this.items = []; this.runner = initialRunner();
     this.distance = 0; this.session = newSession(); this.landingUntil = 0; this.expressionUntil = 0;
     ui.jump.disabled = true;
@@ -78,10 +78,17 @@ class Adventure extends Phaser.Scene {
     if (this.distance >= this.nextAt && this.session.elapsed < DURATION - 3.5) {
       const item = this.spawn();
       item.sprite = this.add.image(item.x,item.y,item.type).setDisplaySize(item.width,item.height);
+      // Tamaño y pulso exclusivamente visuales: la caja de colisión no cambia.
+      if (item.type === 'star') item.sprite.setDisplaySize(32,32);
       this.items.push(item); this.nextAt = this.distance + item.gap;
     }
     for (let i = this.items.length - 1; i >= 0; i--) {
       const item = this.items[i]; item.x -= RUN_SPEED * dt; item.sprite.x = item.x;
+      if (item.type === 'star') {
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const pulse = reduced ? 1 : 1 + .06 * Math.sin(this.session.elapsed * Math.PI * 2);
+        item.sprite.setDisplaySize(32 * pulse,32 * pulse);
+      }
       if (touches(this.runner,185,item)) {
         const previous = this.session; this.session = collect(this.session,item); item.used = true;
         if (previous !== this.session) {
@@ -107,7 +114,7 @@ class Adventure extends Phaser.Scene {
     while (remaining > 0 && this.running) { const dt = Math.min(remaining,1/60);this.simulate(dt);remaining -= dt; }
     drawLandscape(this.land,this.distance);
     const pose = catPose(this.runner,this.session.elapsed,this.landingUntil,this.expression,this.expressionUntil);
-    this.cat.setPosition(185,this.runner.y+pose.offset).setTexture(pose.texture).setScale(.84*pose.sx,.84*pose.sy).setAngle(pose.angle);
+    this.cat.setPosition(185,this.runner.y+pose.offset).setTexture(pose.texture).setScale(.98*pose.sx,.98*pose.sy).setAngle(pose.angle);
     const immune = this.session.elapsed < this.session.immuneUntil;
     this.cat.setAlpha(immune ? .6 : 1); if (immune) this.cat.setTint(0xff9bd8); else this.cat.clearTint();
     this.shadow.setScale(this.runner.grounded ? 1 : .6); this.refreshHUD();

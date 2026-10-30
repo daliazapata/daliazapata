@@ -38,3 +38,13 @@ La prueba tarda algo más de 30 segundos y regenera las capturas en `docs/`. El 
 ## Límites
 
 No se probó un teléfono físico, Safari ni Firefox. El workflow de Pages está preparado, pero no se ejecutó ni se habilitó Pages; no existe un despliegue verificado. La vista previa animada y el README del perfil quedan para una entrega posterior.
+
+## Segunda iteración visual — 30 de octubre de 2026
+
+- Gato ampliado de escala 0,84 a 0,98 (aproximadamente +17 %), con orejas delineadas, ojos y hocico más definidos y cola de anillos contrastados. Se conservan sus fotogramas, poses y física.
+- Estrellas coleccionables de 32 píxeles visuales frente a 22 anteriores, centro blanco y pulso suave de ±6 %. Con movimiento reducido el tamaño permanece estable. Las cajas de colisión permanecen intactas.
+- Contadores en paneles individuales: etiquetas de 15 px y cifras de 24 px en escritorio; 12 y 22 px en móvil. Instrucciones ampliadas y más claras.
+- `npm test`: nuevamente 10 aprobadas. `npm run build`: correcto, aviso habitual de Phaser (aproximadamente 345 KB gzip).
+- Verificación de adaptación en Chromium a 320×740, 360×800, 390×844, 844×390 y 1280×800: sin desplazamiento horizontal; proporción del canvas 16:6 preservada; botón inicial dentro del panel.
+- Capturas de escritorio y móvil regeneradas con la versión visual actual.
+- Prueba completa de navegador repetida con éxito: salto por teclado y tacto, recogida/choque, pausa por visibilidad simulada, 30 segundos activos, reinicio y récord persistente 70; cero errores JavaScript.
