@@ -34,14 +34,19 @@ La descripción personal, UPC, voluntariado en QuantumHub Perú y participación
 - Rutas locales y anclas verificadas; imágenes con texto alternativo y separadores decorativos con `alt=""`.
 - HTTP HEAD: respuestas 200 para perfil, pestaña de repositorios, los cuatro proyectos destacados y `michi-andino`.
 - El dominio `daliazapata.github.io` respondió con un rechazo del proxy (403 al establecer el túnel). No demuestra un fallo del sitio; la disponibilidad del juego publicado no se pudo comprobar desde este entorno. Se conserva la URL proporcionada por Dalia.
+- Después de subir la rama: la página del README en GitHub respondió HTTP 200. Se inspeccionó su HTML enriquecido servido por GitHub y se confirmó la conservación de `picture`, la portada móvil, la vista previa del juego, el ancla de proyectos y «Jugar ahora». No equivale a una comprobación visual completa en GitHub.
 - `git diff --check`: correcto. `git diff origin/main -- mini .github`: vacío. No se requieren pruebas ni build del minijuego porque permanece sin cambios.
 
 ## Capturas y límites respecto al mockup
 
 [Vista de escritorio](escritorio.png) · [Vista móvil](movil.png).
 
-Las capturas son una **aproximación local al renderizado del README**: el CSS utilizado solo para revisarlo no está incluido en el README ni determina su presentación en GitHub. Falta confirmar el renderizado final en GitHub al revisar la rama o el PR.
+Las capturas son una **aproximación local al renderizado del README**: el CSS utilizado solo para revisarlo no está incluido en el README ni determina su presentación en GitHub. Se confirmó la estructura del HTML renderizado por GitHub después del push; la apariencia final debe revisarse en la rama o el PR.
 
 GitHub controla la tipografía, el ancho, los colores de texto y la disposición del Markdown. Por eso el diseño adapta la referencia con SVG originales y secciones verticales; no reproduce su cuadrícula web, botones con efectos CSS, navegación fija ni brillo general. Las ilustraciones usan geometría pixel art propia, sin copiar el mockup como una imagen única ni emplear imágenes de terceros.
 
 No se incrusta el gráfico de contribuciones ni se inventan estadísticas; la actividad real se consulta en GitHub. La vista previa del juego es estática. No se cambió la configuración de Pages ni se ejecutó su workflow. No se hizo merge.
+
+## Estado de entrega
+
+Rama subida a GitHub. La creación del PR en borrador se intentó mediante GitHub CLI, pero `https://api.github.com/graphql` respondió `Forbidden` por las restricciones de acceso del entorno. No se creó el PR desde esta sesión. Puede prepararse en https://github.com/daliazapata/daliazapata/pull/new/feat/profile-readme seleccionando la opción de borrador.
